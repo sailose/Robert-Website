@@ -11,13 +11,13 @@
     </style>
 </head>
 <body>
-    <div class="Company Name">
+    <header>
         <h3>Welcome to Fast Fire Defense </h3>
         <h4 class = "sub-header">Where every Second Counts</h4>
     </div>
     <div class="nav">
-        <a href="about.html">About</a>
-        <a href="mailto:FastFireDefense@gmail.com?subject=Contact%20US">Contact</a>
+        <a href="about.html" aria-label="Learn more about us">About</a>
+        <a href="mailto:FastFireDefense@gmail.com?subject=Contact%20US" aria-label="Contact us via email" >Contact</a>
     </div>
     <img src="images/nice.gif" alt="A descriptive alt text" style="display: block; margin: 20px auto; max-width: 100%;">
     <main>
@@ -36,11 +36,14 @@
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
+            aria-label="Google Maps showing our Location"> 
         </iframe>
     </div>
     <footer>
-        <p>&copy; Copyright 2025 </p>
+        <p>&copy; <span id="year"></span> Fast Fire Defense </p>
     </footer>
-    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('year').innerHTML = new Date().getFullYear();
+    </script>>
 </body>
 </html>
