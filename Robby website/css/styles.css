@@ -57,6 +57,13 @@ h7 {
     font-weight: bold;
 }
 
+h8 {
+    color: #000000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
 p {
     line-height: 1.6;
     margin: 10px 0;
