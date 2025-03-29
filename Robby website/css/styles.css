@@ -17,6 +17,19 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    color: #ff0000;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+h4 {
+    color: #000000;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+}
 p {
     line-height: 1.6;
     margin: 10px 0;
@@ -81,14 +94,17 @@ form input, form textarea, form button {
     font-size: 16px;
 }
 
-form button {
+.button {
+    display: inline-block;
+    padding: 10px 20px;
     background-color: #007BFF;
     color: white;
-    border: none;
+    text-decoration: none;
+    border: 4px;
     cursor: pointer;
 }
 
-form button:hover {
+.button:hover {
     background-color: #0056b3;
 }
 
