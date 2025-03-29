@@ -17,10 +17,50 @@ h2 {
     text-align: center;
 }
 
+h3{
+    color: #ff0000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h4{
+    color: #000000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h5{
+    color: #000000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h6{
+    color: #000000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h7 {
+    color: #000000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
 p {
     line-height: 1.6;
     margin: 10px 0;
-    text-align: justify;
+    text-align: center;
 }
 
 .container {
@@ -101,4 +141,13 @@ form button:hover {
     max-width: 100%; /* Ensure the GIF scales properly */
     border: 2px solid #ccc; /* Optional: Add a border */
     border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.sub-header {
+    font-size: 18px; 
+    font-weight: normal; 
+    margin-top: -10px; 
+    text-align: center; 
+    color: #000000; 
+
 }
