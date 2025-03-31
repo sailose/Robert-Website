@@ -130,3 +130,23 @@ form button:hover {
     border: 2px solid #ccc; /* Optional: Add a border */
     border-radius: 10px; /* Optional: Add rounded corners */
 }
+
+main.container p:not(.form-container p) {
+   display: flex;
+    justify-content: center; /* Center the GIF horizontally */
+    align-items: center; /* Center the GIF vertically */
+    width: 80%; /* Set a width for the container */
+    margin: auto; /* Center the container on the page */
+    overflow: hidden; /* Hide any overflow content */
+}
+main.Our-location {
+    display: flex;
+     justify-content: center; /* Center the GIF horizontally */
+     align-items: center; /* Center the GIF vertically */
+     width: 80%; /* Set a width for the container */
+     margin: auto; /* Center the container on the page */
+     overflow: hidden; /* Hide any overflow content */
+ }
+
+ 
+
