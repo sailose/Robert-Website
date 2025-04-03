@@ -1,10 +1,26 @@
+:root {
+    --trs-timing: 0.3s;
+    --trs-easing: ease-in-out;
+    --bg-color: #333;
+    --after-bg-width: 100;
+    --after-shadow-offset: 15;
+    --after-bg-position: 0;
+    --after-radial-bg-position: 50;
+    --after-bg-opacity: 20;
+    --white: #630d0d;
+    --trs-delay: 0s;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: rgb(255, 255, 255);
 }
-
 h1 {
     color: #000000;
     text-align: center;
@@ -12,7 +28,7 @@ h1 {
 }
 
 h2 {
-    color: #333;
+    color: #f80a0a;
     margin-top: 20px;
     text-align: center;
 }
@@ -30,6 +46,7 @@ h4 {
     margin-top: 20px;
     font-size: 25px;
 }
+
 p {
     line-height: 1.6;
     margin: 10px 0;
@@ -51,102 +68,165 @@ p {
     bottom: 0;
     width: 100%;
 }
-.nav {
-    background-color: #f4f4f4;
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
     text-align: center;
-    padding: 10px;
+}
+
+.popup.show {
+    display: block; /* Show the pop-up when the class is added */
+}
+
+.popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup-overlay.show {
+    display: block; /* Show the overlay when the class is added */
+}
+
+ 
+/* Navbar Container */
+.nav {
+    background: rgba(255, 255, 255, 0.1); /* Transparent background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: auto;
+    margin: 0 auto;  /* Centers the navbar */
+    display: flex;
+    justify-content: center;  /* Centers the nav items */
+    max-width: 600px;  /* Optional: limits navbar width */
+  }
+  
+  /* Navbar List Styling */
+  .nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Aligns links to the center */
+    gap: 15px;  /* Adjust the space between the links */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Links in Navbar */
+  .nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease; /* Adding transition for color and transformation */
+  }
+  
+  /* Hover Effect for Links - Smooth hover effect */
+  .nav a:hover {
+    color: #ff0000;  /* Change the text color */
+    transform: scale(1.1); /* Slightly enlarge the text */
+    background: rgba(255, 255, 255, 0.2); /* Light background on hover */
+  }
+  
+  /* Glow Button Styling (updated) */
+  .glow-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0;  /* No margin */
+    font-size: 1.2em;
+    color: white;
+    background-color: transparent;
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none; /* Ensure no shadow is applied */
+  }
+  
+  .glow-button:hover {
+    color: rgb(6, 7, 7);  /* Keep text color change only */
+    box-shadow: none; /* No glow or shadow effect */
+  }
+  
+  .glow-button span {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Contact Section */
+
+
+  .contact-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.contact-form h2 {
     margin-bottom: 20px;
 }
 
-.nav a {
-    text-decoration: none;
-    color: #333;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-.nav a:hover {
-    color: #007BFF;
-    text-decoration: underline;
-}
-
-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-form input, form textarea, form button {
+input, textarea {
     width: 100%;
-    margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
     border-radius: 5px;
     font-size: 16px;
 }
 
-form button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
+textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+button {
     cursor: pointer;
+    padding: 12px 25px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 25px;
     font-size: 18px;
-    font-weight: bold;
-}
-form button:hover {
-    background-color: #0056b3;
+    transition: all 0.4s ease;
 }
 
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border: 4px;
-    cursor: pointer;
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.8);
 }
-
-.button:hover {
-    background-color: #0056b3;
-}
-
-.gif-container {
-    text-align: center; /* Center the GIF horizontally */
-    margin: 100px 0; /* Add spacing above and below the GIF */
-}
-
-.gif-container img {
-    max-width: 100%; /* Ensure the GIF scales properly */
-    border: 2px solid #ccc; /* Optional: Add a border */
-    border-radius: 10px; /* Optional: Add rounded corners */
-}
-
-main.container p:not(.form-container p) {
-   display: flex;
-    justify-content: center; /* Center the GIF horizontally */
-    align-items: center; /* Center the GIF vertically */
-    width: 80%; /* Set a width for the container */
-    margin: auto; /* Center the container on the page */
-    overflow: hidden; /* Hide any overflow content */
-}
-main.Our-location {
-    display: flex;
-     justify-content: center; /* Center the GIF horizontally */
-     align-items: center; /* Center the GIF vertically */
-     width: 80%; /* Set a width for the container */
-     margin: auto; /* Center the container on the page */
-     overflow: hidden; /* Hide any overflow content */
- }
-
- 
-
