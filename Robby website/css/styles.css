@@ -22,7 +22,7 @@ body {
     color: rgb(255, 255, 255);
 }
 h1 {
-    color: #000000;
+    color: #ff0000;
     text-align: center;
     margin-top: 20px;
 }
@@ -41,7 +41,7 @@ h3 {
 }
 
 h4 {
-    color: #000000;
+    color: #ff0000;
     text-align: center;
     margin-top: 20px;
     font-size: 25px;
