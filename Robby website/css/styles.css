@@ -75,12 +75,15 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
     z-index: 1000;
     text-align: center;
+    color: #fff; /* White text for contrast */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border for a frosted look */
 }
 
 .popup.show {
@@ -102,7 +105,33 @@ p {
     display: block; /* Show the overlay when the class is added */
 }
 
- 
+.send-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.return-to-home-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+
 /* Navbar Container */
 .nav {
     background: rgba(255, 255, 255, 0.1); /* Transparent background */
