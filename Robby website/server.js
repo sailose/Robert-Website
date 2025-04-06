@@ -63,8 +63,8 @@ app.post('/schedule', async (req, res) => {
     const mailOptions = {
         from: 'FastFireDefense@gmail.com',
         to: email,
-        subject: 'Booking Confirmation - Thrive Nutrition Coaching',
-        text: `Dear ${name},\n\nYour ${service} session has been scheduled for ${date} at ${time}.\n\nMessage: ${message || 'N/A'}\n\nWe look forward to helping you thrive!\n\nBest,\nThrive Nutrition Coaching`
+        subject: 'Booking Confirmation',
+        text: `Dear ${name},\n\nYour ${service} session has been scheduled for ${date} at ${time}.\n\nMessage: ${message || 'N/A'}\n\nLooking forward to your session!\n\nBest regards,\nFast Fire Defense Team\n\nWe are located at 5770 Smallwood Church Rd, Indian Head, MD 20640 https://g.co/kgs/U2p32so\n\n`
     };
 
     // Save booking to file
