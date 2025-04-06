@@ -1,67 +1,90 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
-const cors = require('cors'); // Add this line
-
-
+const fs = require('fs').promises;
+const path = require('path');
+const cors = require('cors'); 
 const app = express();
 const port = 3000;
 
-app.use(cors()); // Enable CORS for all routes
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json()); // Ensure JSON body parsing is enabled
+// Middleware to parse JSON
+app.use(bodyParser.json());
 
-// Route for the root URL
-app.get('/', (req, res) => {
-    res.send('Welcome to the Fast Fire Defense backend server!');
+// Enable CORS
+app.use(cors());
+
+
+// Serve static files
+app.use(express.static('.', {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
+    }
+}));
+
+// Path to bookings JSON file
+const bookingsFile = path.join(__dirname, 'bookings.json');
+
+// Initialize bookings file if it doesn't exist
+async function initializeBookingsFile() {
+    try {
+        await fs.access(bookingsFile);
+    } catch (error) {
+        await fs.writeFile(bookingsFile, JSON.stringify([]));
+    }
+}
+
+// Get all bookings
+app.get('/bookings', async (req, res) => {
+    try {
+        const data = await fs.readFile(bookingsFile, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (error) {
+        console.error('Error reading bookings:', error);
+        res.status(500).send('Error reading bookings');
+    }
 });
 
-// Route for handling the contact form submission
-app.post('/submit-form', (req, res) => {
-    const { name, email, message } = req.body;
-``
-    // Send email using Nodemailer
+// Handle scheduling form submission
+app.post('/schedule', async (req, res) => {
+    const { service, date, time, name, email, message, slot } = req.body;
+
+    // Set up email transporter (example using Gmail)
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'FastFireDefense@gmail.com',
-            pass: 'iumx vros iamc xwyp',
-        },
+            user: 'FastFireDefense@gmail.com', // Replace with your email
+            pass: 'iumx vros iamc xwyp'     // Replace with your app-specific password
+        }
     });
 
+    // Email options
     const mailOptions = {
-        from: email,
-        to: 'FastFireDefense@gmail.com',
-        subject: 'New Contact Form Submission',
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+        from: 'FastFireDefense@gmail.com',
+        to: email,
+        subject: 'Booking Confirmation - Thrive Nutrition Coaching',
+        text: `Dear ${name},\n\nYour ${service} session has been scheduled for ${date} at ${time}.\n\nMessage: ${message || 'N/A'}\n\nWe look forward to helping you thrive!\n\nBest,\nThrive Nutrition Coaching`
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error sending email:', error);
-            res.status(500).json({ success: false, message: 'Error sending email' });
-        } else {
-            console.log('Email sent successfully:', info.response);
-            res.json({ success: true, message: 'Email sent successfully' });
-        }
-    });
-});
+    // Save booking to file
+    try {
+        const data = await fs.readFile(bookingsFile, 'utf8');
+        const bookings = JSON.parse(data);
+        bookings.push({ slot });
+        await fs.writeFile(bookingsFile, JSON.stringify(bookings, null, 2));
 
-// Route for serving the contact.html file
-app.get('/contact.html', (req, res) => {
-    const filePath = './Robby website/contact.html';
-    fs.readFile(filePath, (error, data) => {
-        if (error) {
-            console.error('Error reading file:', error);
-            res.status(500).send('Error reading file');
-        } else {
-            res.send(data.toString());
-        }
-    });
+        // Send email
+        await transporter.sendMail(mailOptions);
+        res.status(200).send('Booking successful');
+    } catch (error) {
+        console.error('Error processing booking:', error);
+        res.status(500).send('Error processing booking');
+    }
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, async () => {
+    await initializeBookingsFile();
+    console.log(`Server running at http://localhost:${port}`);
 });
-
