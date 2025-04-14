@@ -405,3 +405,539 @@ p {
     font-size: 14px;
     color: #666;
 }
+/* Main Page */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Header with Slideshow */
+header {
+    position: relative;
+    height: 500px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+header .header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+header h3 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #ff4d4d;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+header .sub-header {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+/* Navigation Bar */
+.nav {
+    background: #222;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background: #ff4d4d;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: #111;
+}
+
+.hero img {
+    max-width: 300px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* Services Section */
+.services {
+    padding: 60px 20px;
+    background: #222;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 40px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #ccc;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 60px 20px;
+    background: #111;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 40px;
+}
+
+.testimonial-slider {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonial {
+    display: none;
+    padding: 20px;
+    background: #333;
+    border-radius: 10px;
+    animation: fadeIn 1s ease;
+}
+
+.testimonial.active {
+    display: block;
+}
+
+.testimonial p {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.testimonial h4 {
+    color: #ff4d4d;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Main Content */
+main {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+main h2 {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 20px;
+}
+
+main p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: #ccc;
+}
+
+/* Map Section */
+.map-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.map-container iframe {
+    border: 3px solid #ff4d4d;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+/* Footer */
+footer {
+    background: #111;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ff4d4d;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: #ff4d4d;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #e60000;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4d4d;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: none;
+    transition: background 0.3s ease;
+}
+
+.back-to-top:hover {
+    background: #e60000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        height: 300px;
+    }
+
+    header h3 {
+        font-size: 2rem;
+    }
+
+    header .sub-header {
+        font-size: 1.2rem;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+
+/* Contact Page Styles */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.left-section {
+    flex: 1;
+    padding: 40px;
+    background: #333;
+    text-align: center;
+}
+
+.left-section .logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.left-section h1 {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 20px;
+}
+
+.left-section p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.right-section {
+    flex: 2;
+    padding: 40px;
+    background: #fff; /* Changed from #111 to #fff for a white background */
+    color: #000; /* Added to ensure text is readable on a white background */
+}
+
+.right-section h2 {
+    font-size: 2.5rem;
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.right-section iframe {
+    border: 3px solid #ff4d4d;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.home-btn {
+    display: inline-block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px 20px;
+    background: #ff4d4d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-btn:hover {
+    background: #e60000;
+}
+
+/* Responsive Design for Contact Page */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .right-section iframe {
+        height: 400px;
+    }
+}
+
+
+
+/* Compact Services Section for Left Side */
+/* Compact Services Section for Left Side */
+.left-section .services.compact {
+    padding: 5px 0; /* Minimal padding */
+    background: transparent;
+}
+
+.left-section .services.compact h2 {
+    font-size: 1.3rem; /* Smaller heading */
+    color: #ff4d4d;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.left-section .services.compact .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Smaller cards, 3 columns on larger screens */
+    gap: 6px; /* Reduced gap */
+}
+
+.left-section .services.compact .service-card {
+    background: #444;
+    padding: 8px; /* Reduced padding */
+    border-radius: 5px; /* Smaller border radius */
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.left-section .services.compact .service-card:hover {
+    transform: translateY(-2px); /* Smaller hover lift */
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.2); /* Smaller shadow */
+}
+
+.left-section .services.compact .service-card i {
+    font-size: 1rem; /* Smaller icon */
+    color: #ff4d4d;
+    margin-bottom: 4px; /* Reduced margin */
+}
+
+.left-section .services.compact .service-card h3 {
+    font-size: 0.8rem; /* Smaller heading */
+    margin-bottom: 0;
+    line-height: 1.1; /* Tighter line height */
+}
+
+/* Further adjust left-section to minimize vertical space */
+.left-section {
+    flex: 1;
+    padding: 15px; /* Further reduced padding */
+    background: #333;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.left-section .logo {
+    max-width: 120px; /* Smaller logo */
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.left-section h1 {
+    font-size: 1.8rem; /* Smaller heading */
+    color: #ff4d4d;
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.left-section p {
+    font-size: 0.9rem; /* Smaller text */
+    color: #ccc;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+/* Ensure right-section calendar is visible */
+.right-section {
+    flex: 2;
+    padding: 15px; /* Reduced padding */
+    background: #fff;
+    color: #000;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.right-section h2 {
+    font-size: 1.8rem; /* Smaller heading */
+    color: #ff4d4d;
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.right-section iframe {
+    border: 3px solid #ff4d4d;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+    height: 500px;
+}
+
+/* Adjust container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 15px auto; /* Reduced margin */
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+    min-height: calc(100vh - 120px); /* Adjusted for nav and footer */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .left-section .services.compact .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2 columns on smaller screens */
+    }
+
+    .left-section .services.compact .service-card h3 {
+        font-size: 0.7rem; /* Even smaller text on mobile */
+    }
+
+    .left-section .services.compact .service-card i {
+        font-size: 0.9rem; /* Smaller icon on mobile */
+    }
+}

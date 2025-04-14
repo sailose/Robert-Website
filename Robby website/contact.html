@@ -3,70 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book A  Session - Fast Fire Defense</title>
+    <title>Book A Session - Fast Fire Defense</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <ul>
+            <li><a href="about.html"><span>About Us</span></a></li>
+            <li><a href="services.html"><span>Services</span></a></li>
+            <li><a href="contact.html"><span>Contact Us</span></a></li>
+        </ul>
+    </div>
+
     <div class="container">
-        <!-- Left Section: Branding and Intro -->
+        <!-- Left Section: Branding, Intro, and Services -->
         <div class="left-section">
-            <img src="logo.png" alt="Fast Fire Defense" class="logo">
+            <img src="images/FFD.png" alt="Fast Fire Defense Logo" class="logo">
             <h1>Fast Fire Defense</h1>
-            <p>some bull shit to add later</p>
+            <p>Book your session with us today! Choose a time that works for you using the calendar.</p>
+
+            <!-- Services Offered Section -->
+            <section class="services compact">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>MD CCW Permit Training</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>HQL Certification</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-shield"></i>
+                        <h3>DC CCW Permit Training</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-lock service-icon"></i>
+                        <h3>Firearms Safety</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-gavel"></i>
+                        <h3>Firearms Law</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-gun"></i>
+                        <h3>Basic Handgun Skills</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Advanced Handgun Skills</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-user"></i>
+                        <h3>1 on 1 Training</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-award"></i>
+                        <h3>NRA Qualifications</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-crosshairs"></i>
+                        <h3>Defensive Firearm Tactics</h3>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-running"></i>
+                        <h3>Self-Defense Strategies</h3>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- Right Section: Scheduling Form -->
+        <!-- Right Section: Google Calendar Booking -->
         <div class="right-section">
-            <!-- Service Dropdown -->
-            <div class="form-group">
-                <label for="service">Select a Service:</label>
-                <select id="service" name="service">
-                    <option value="MD CCW Class">MD CCW Class</option>
-                    <option value="HQL Class">HQL CLass</option>
-                    <option value="Advanced Coaching">Advanced Coaching</option>
-                    <option value="1 on 1 Coaching">1 on 1 Coaching</option>
-                </select>
-            </div>
+            <h2>Schedule Your Session</h2>
+            <!-- Google Calendar Appointment Scheduling begin -->
+            <iframe 
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2R1PcsXPzrozVmtU4xSPFqbnbC-3NV4pLLK2KnR42IZxXQH5uFMDMPKlplWWDrQrYxpM29cDx1?gv=true" 
+                style="border: 0" 
+                width="100%" 
+                height="600" 
+                frameborder="0">
+            </iframe>
+            <!-- end Google Calendar Appointment Scheduling -->
+        </div>
+    </div>
 
-            <!-- Static Calendar for Date and Time Selection -->
-            <div class="form-group">
-              <label>Select a Date and Time:</label>
-              <div id="calendar">
-                  <!-- Dates and times will be dynamically generated by script.js -->
-              </div>
-          </div>
+    <!-- Return to Home Button -->
+    <a href="MainPage.html" class="home-btn">Return to Home</a>
 
-          <!-- User Info Form -->
-          <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-              <label for="message">Message (Optional):</label>
-              <textarea id="message" name="message" rows="4"></textarea>
-          </div>
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Fast Fire Defense</p>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
 
-          <!-- Submit Button -->
-          <button id="submit-btn">Schedule Now</button>
-      </div>
-  </div>
+    <script>
+        // Dynamic Year in Footer
+        document.getElementById('year').innerHTML = new Date().getFullYear();
 
-  <!-- Return to Home Button -->
-  <a href="MainPage.html" class="home-btn">Return to Home</a>
-
-  <!-- Popup for Confirmation -->
-  <div id="popup" class="popup">
-      <div class="popup-content">
-          <span id="close-popup" class="close">&times;</span>
-          <h2>Booking Confirmed!</h2>
-          <p>Your session has been scheduled. You'll receive a confirmation email shortly.</p>
-      </div>
-  </div>
-
-  <script src="script.js"></script>
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.location.href = targetId;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
