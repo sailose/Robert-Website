@@ -3,42 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <meta name="description" content="Explore firearm training and self-defense services at Fast Fire Defense, including CCW, HQL, and NRA certifications in Maryland.">
+    <meta name="keywords" content="firearm training, concealed carry, CCW, HQL, self-defense, Maryland, Fast Fire Defense">
+    <title>Services - Fast Fire Defense</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
-    <div>
-    </div>
-    <main class="container2">
-        <h2>What we offer</h2>
-        <p>At Fast Fire Defense, we offer a range of training programs designed to meet the needs of both novice and experienced firearm owners. Our courses include: </p>
-        <ul>
-            <li>Concealed Carry Weapon (CCW) Permit Training (maryland)</li>
-            <li>Handgun Qualification License (HQL) Certification</li>
-            <li>DC Concealed Carry Permit Training</li>
-            <li>Firearms Safety and Prevention</li>
-            <li>Firearms Law and Regulations</li>
-            <li>Basic Handgun Skills</li>
-            <li>Advanced Handgun Skills</li>
-            <li>1 on 1 training</li>
-            <li>NRA Pistol Qualification, Rifle Qualification, and Concealed Carry Permit</li>
-            <li>Advanced Defensive Firearm Tactics</li>
-            <li>Personal Safety and Self-Defense Strategies</li>
-            <p>and more, visit our contact page to schedule a session and learn more about our services</p>
-            <p?>We are dedicated to providing the highest quality training, ensuring that our students are well-prepared for responsible firearm ownership and personal safety.</p>
-            
-           </p>
-        
-        
-    </form>
-    <button class="return-to-home-button" onclick="location.href='MainPage.html';">Return to Home</button>
-    <button class="return-to-home-button" onclick="location.href='Contact.html';">Contact Us</button>
-  
-    </div>
-</main>
+    <header>
+        <div class="logo-container">
+            <img src="images/FFDT.png" alt="Fast Fire Defense Logo" class="logo">
+        </div>
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active" aria-current="page">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="fade-in">
+            <h2 class="section-title">What We Offer</h2>
+            <p>At Fast Fire Defense, we offer a range of training programs designed to meet the needs of both novice and experienced firearm owners. Our courses include:</p>
+            <ul>
+                <li>Concealed Carry Weapon (CCW) Permit Training (Maryland)</li>
+                <li>Handgun Qualification License (HQL) Certification</li>
+                <li>DC Concealed Carry Permit Training</li>
+                <li>Firearms Safety and Prevention</li>
+                <li>Firearms Law and Regulations</li>
+                <li>Basic Handgun Skills</li>
+                <li>Advanced Handgun Skills</li>
+                <li>1 on 1 Training</li>
+                <li>NRA Pistol Qualification, Rifle Qualification, and Concealed Carry Permit</li>
+                <li>Advanced Defensive Firearm Tactics</li>
+                <li>Personal Safety and Self-Defense Strategies</li>
+            </ul>
+            <p>Visit our <a href="contact.html">contact page</a> to schedule a session and learn more about our services.</p>
+            <p>We are dedicated to providing the highest quality training, ensuring that our students are well-prepared for responsible firearm ownership and personal safety.</p>
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="MainPage.html" class="glow-button" role="button">Return to Home</a>
+                <a href="contact.html" class="glow-button" role="button">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>&copy; "Copyright 2025"</p>
+        <p>© <span id="year"></span> Fast Fire Defense. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100083099274034" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/fastfiredefense/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

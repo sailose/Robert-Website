@@ -8,23 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <div class="nav">
-        <ul>
-            <li><a href="about.html"><span>About Us</span></a></li>
-            <li><a href="services.html"><span>Services</span></a></li>
-            <li><a href="contact.html"><span>Contact Us</span></a></li>
-        </ul>
-    </div>
+   
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="container">
-        <!-- Left Section: Branding, Intro, and Services -->
-        <div class="left-section">
-            <img src="images/FFD.png" alt="Fast Fire Defense Logo" class="logo">
-            <h1>Fast Fire Defense</h1>
-            <p>Book your session with us today! Choose a time that works for you using the calendar.</p>
-
-            <!-- Services Offered Section -->
+    <div class="contact-container">
+       
+        <div class="services-column fade-in">
             <section class="services compact">
                 <h2>Services Offered</h2>
                 <div class="services-grid">
@@ -75,11 +72,8 @@
                 </div>
             </section>
         </div>
-
-        <!-- Right Section: Google Calendar Booking -->
-        <div class="right-section">
+        <div class="calendar-section">
             <h2>Schedule Your Session</h2>
-            <!-- Google Calendar Appointment Scheduling begin -->
             <iframe 
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2R1PcsXPzrozVmtU4xSPFqbnbC-3NV4pLLK2KnR42IZxXQH5uFMDMPKlplWWDrQrYxpM29cDx1?gv=true" 
                 style="border: 0" 
@@ -87,40 +81,18 @@
                 height="600" 
                 frameborder="0">
             </iframe>
-            <!-- end Google Calendar Appointment Scheduling -->
         </div>
     </div>
 
-    <!-- Return to Home Button -->
-    <a href="MainPage.html" class="home-btn">Return to Home</a>
-
-    <!-- Footer -->
     <footer>
-        <p>© <span id="year"></span> Fast Fire Defense</p>
+        <p>© <span id="year"></span> Fast Fire Defense. All rights reserved.</p>
         <div class="social-links">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100083099274034" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/fastfiredefense/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
-    <script>
-        // Dynamic Year in Footer
-        document.getElementById('year').innerHTML = new Date().getFullYear();
-
-        // Smooth Scroll for Navigation Links
-        document.querySelectorAll('.nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    window.location.href = targetId;
-                }
-            });
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

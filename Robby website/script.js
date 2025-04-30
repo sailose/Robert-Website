@@ -1,209 +1,130 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const calendar = document.getElementById('calendar');
-    const submitBtn = document.getElementById('submit-btn');
-    const popup = document.getElementById('popup');
-    const closePopup = document.getElementById('close-popup');
-    let selectedDate = null;
-    let selectedTime = null;
-    let selectedSlot = null;
+    console.log('Script loaded');
 
-    // Backend URL
-    const backendUrl = 'http://localhost:3000';
-
-    // Fetch bookings from the server
-    async function fetchBookings() {
-        try {
-            const response = await fetch(`${backendUrl}/bookings`);
-            const bookings = await response.json();
-            return bookings;
-        } catch (error) {
-            console.error('Error fetching bookings:', error);
-            return [];
-        }
-    }
-
-    // Available time slots for each day
-    const timeSlots = [
-        '10:00 AM', '11:00 AM', '12:00 PM',
-        '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM',
-    ];
-
-    // New function to generate only the upcoming Saturday and Sunday
-    function generateWeekendDates() {
-        const today = new Date();
-        const dates = [];
-        let currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-        let daysUntilSaturday = (6 - currentDay + 7) % 7; // Days until the next Saturday
-        if (daysUntilSaturday === 0) {
-            daysUntilSaturday = 7; // If today is Saturday, get the next Saturday
-        }
-
-        // Calculate the next Saturday
-        const saturday = new Date(today);
-        saturday.setDate(today.getDate() + daysUntilSaturday);
-        dates.push(saturday);
-
-        // Calculate the next Sunday (1 day after Saturday)
-        const sunday = new Date(saturday);
-        sunday.setDate(saturday.getDate() + 1);
-        dates.push(sunday);
-
-        return dates;
-    }
-
-    // Format date as "Day, Month Date" (e.g., "Friday, August 8")
-    function formatDate(date) {
-        return date.toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'long',
-            day: 'numeric'
+    // Dynamic Year in Footer
+    const yearSpans = document.querySelectorAll('#year');
+    if (yearSpans.length > 0) {
+        yearSpans.forEach(span => {
+            span.textContent = new Date().getFullYear();
         });
+    } else {
+        console.warn('No #year elements found');
     }
 
-    // Format date as "YYYY-MM-DD" for data attributes
-    function formatDateForData(date) {
-        return date.toISOString().split('T')[0];
+    // Logo Animation
+    const logos = document.querySelectorAll('.logo');
+    if (logos.length > 0) {
+        logos.forEach(logo => {
+            setTimeout(() => {
+                logo.classList.add('logo-animated');
+            }, 100);
+        });
+    } else {
+        console.warn('No .logo elements found');
     }
 
-    // Render the calendar
-    async function renderCalendar() {
-        calendar.innerHTML = '';
-        const dates = generateWeekendDates();
-        const bookings = await fetchBookings();
-        console.log('Fetched bookings:', bookings); // Debug log
-    
-        dates.forEach(date => {
-            const dateSection = document.createElement('div');
-            dateSection.classList.add('date-section');
-    
-            const dateHeader = document.createElement('h3');
-            dateHeader.textContent = formatDate(date);
-            dateSection.appendChild(dateHeader);
-    
-            const timesContainer = document.createElement('div');
-            timesContainer.classList.add('times');
-    
-            const dateString = formatDateForData(date);
-            const formattedDate = date.toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric'
-            }).toUpperCase();
-    
-            timeSlots.forEach(time => {
-                const slotKey = `${formattedDate} ${time}`;
-                console.log('Checking slotKey:', slotKey); // Debug log
-                const isBooked = bookings.some(booking => {
-                    console.log('Comparing with booking.slot:', booking.slot); // Debug log
-                    return booking.slot === slotKey;
-                });
-    
-                const timeButton = document.createElement('button');
-                timeButton.classList.add('time-slot');
-                if (isBooked) {
-                    timeButton.classList.add('booked');
-                    timeButton.disabled = true;
-                } else {
-                    timeButton.classList.add('available');
-                }
-                timeButton.dataset.date = dateString;
-                timeButton.dataset.time = time;
-                timeButton.textContent = time;
-    
-                timeButton.addEventListener('click', () => {
-                    if (!timeButton.classList.contains('booked')) {
-                        document.querySelectorAll('.time-slot').forEach(slot => {
-                            slot.classList.remove('selected');
-                        });
-                        timeButton.classList.add('selected');
-                        selectedSlot = { date: dateString, time };
-                        console.log('Selected slot:', selectedSlot);
-                    }
-                });
-    
-                timesContainer.appendChild(timeButton);
+    // Navigation Bar Check
+    const nav = document.querySelector('.nav');
+    if (nav) {
+        console.log('Navigation bar found:', nav);
+    } else {
+        console.warn('Navigation bar (.nav) not found');
+    }
+
+    // Slideshow Functionality
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const showSlide = (index) => {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
             });
-    
-            dateSection.appendChild(timesContainer);
-            calendar.appendChild(dateSection);
-        });
-    }
-    // Handle form submission
-    submitBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        if (!selectedSlot) {
-            alert('Please select a time slot.');
-            return;
-        }
-
-        const service = document.getElementById('service').value;
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        if (!name || !email) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-
-        // Step 4.1: Add stricter validation and convert date format
-        if (!selectedSlot.date || !selectedSlot.time || typeof selectedSlot.date !== 'string' || typeof selectedSlot.time !== 'string') {
-            alert('Please select a valid date and time.');
-            return;
-        }
-
-        // Convert date from "YYYY-MM-DD" to "DAY, MONTH DD"
-        const dateObj = new Date(selectedSlot.date);
-        const formattedDate = dateObj.toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'long',
-            day: 'numeric'
-        }).toUpperCase(); // e.g., "SATURDAY, APRIL 12"
-
-        const bookingData = {
-            service,
-            date: formattedDate,
-            time: selectedSlot.time,
-            name,
-            email,
-            message,
-            slot: `${formattedDate} ${selectedSlot.time}`
         };
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+    }
 
-        console.log('Submitting booking with details:', bookingData); // Step 4.2: Debug logging
-
-        try {
-            const response = await fetch(`${backendUrl}/schedule`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bookingData)
+    // Testimonial Slider
+    const testimonials = document.querySelectorAll('.testimonial');
+    if (testimonials.length > 0) {
+        let currentTestimonial = 0;
+        const showTestimonial = (index) => {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.toggle('active', i === index);
             });
+        };
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 7000);
+    }
 
-            if (response.ok) {
-                popup.style.display = 'flex';
-                await renderCalendar();
-                selectedSlot = null;
-                document.getElementById('service').value = 'Fire Fire Defense Team';
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            } else {
-                alert('Error scheduling your session. Please try again.');
+    // Back to Top Button
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // IntersectionObserver for Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
             }
-        } catch (error) {
-            console.error('Error submitting booking:', error);
-            alert('Error scheduling your session. Please try again.');
-        }
-    });
+        });
+    }, observerOptions);
 
-    // Close popup
-    closePopup.addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+    const animatableElements = document.querySelectorAll('.fade-in, .section-title, .team-card');
+    if (animatableElements.length > 0) {
+        animatableElements.forEach(element => {
+            observer.observe(element);
+        });
+    } else {
+        console.warn('No animatable elements found');
+    }
 
-    // Initialize the calendar
-    renderCalendar();
+    // Fallback for animations
+    setTimeout(() => {
+        animatableElements.forEach(element => {
+            if (!element.classList.contains('in-view')) {
+                element.classList.add('in-view');
+                console.log('Applied fallback for:', element);
+            }
+        });
+    }, 1000);
+
+    // Smooth Scroll for Navigation Links
+    const navLinks = document.querySelectorAll('.nav a');
+    if (navLinks.length > 0) {
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    window.location.href = targetId;
+                }
+            });
+        });
+    } else {
+        console.warn('No navigation links found');
+    }
 });
